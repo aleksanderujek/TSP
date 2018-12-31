@@ -16,7 +16,7 @@ individualFactory = factory(Individual)(numberOfNodes)
 start = timer()
 Pop = Population(40, individualFactory)
 tournamentPlayersNumber = 3
-for i in range(10000):
+for i in range(10):
     Pop.individuals = [tournament(nodes, Pop, tournamentPlayersNumber) for _ in Pop.individuals]
 End = timer()
 print(End - start)
