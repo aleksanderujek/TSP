@@ -11,5 +11,5 @@ def formatString(string: str) -> (List[List[int]], int):
     for j, element in enumerate(elements):
       if i != j:
         nodes[j].append(element)
-  nodes = map(int, nodes)
+  nodes = [list(map(int, x)) for x in nodes]
   return nodes, numberOfNodes
