@@ -24,7 +24,7 @@ generationNumber = int(config['Algorithm']['Generations'])
 time = int(config['Algorithm']['Time'])
 i: int = 0
 best = 10000000
-while i < generationNumber or timer()-start < time:
+while i < generationNumber and timer()-start < time:
     # print('GENERACJA : ', i)
     cycle(Pop, nodes, tournamentPlayersNumber)
     currentBest = Pop.getBest(nodes).calcFitness(nodes)
