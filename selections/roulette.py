@@ -1,4 +1,4 @@
-import random
+from utilities.rnd import rndRange
 from populations.individual import Individual
 from populations.population import Population
 
@@ -9,7 +9,7 @@ def getHighestFitness(nodes, population):
   return max(population.individuals, key=lambda x: x.calcFitness(nodes)).calcFitness(nodes)
 
 def getWinnerInterval(pool):
-  rnd = random.randint(0, pool[-1])
+  rnd = rndRange(0, pool[-1])
   winner = 0
   for i in range(0, len(pool)-1):
     if rnd < pool[i+1]:

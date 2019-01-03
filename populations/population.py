@@ -12,6 +12,5 @@ class Population:
             self.individuals.append(factory())
 
   def getBest(self, nodes):
-        if self.best is None:
-          self.best = min(self.individuals, key=lambda x: x.calcFitness(nodes))
-        return self.best
+    self.best = min(self.individuals, key=lambda x: x.calcFitness(nodes))
+    return self.best

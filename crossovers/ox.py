@@ -1,11 +1,11 @@
-import random as rnd
+from utilities.rnd import rndRange
 from typing import List
 from populations.individual import Individual
 def ox(parent1, parent2):
     child: Individual = Individual(None)
     child.nodes = []
-    firstIndex = rnd.randint(0,len(parent1.nodes)-1)
-    secondIndex = rnd.randint(firstIndex, len(parent1.nodes)-1)
+    firstIndex = rndRange(0,len(parent1.nodes)-1)
+    secondIndex = rndRange(firstIndex, len(parent1.nodes)-1)
     innerSet: List[int] = parent1.nodes[firstIndex:secondIndex]
     startSet: List[int] = []
     endSet: List[int] = []
@@ -15,5 +15,4 @@ def ox(parent1, parent2):
         else:
             endSet.append(value)
     child.nodes = startSet + innerSet + endSet
-    # print(child.nodes)
     return child

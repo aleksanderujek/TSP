@@ -1,5 +1,5 @@
 from typing import List
-from random import shuffle
+from utilities.rnd import rndShuffle
 
 class Individual:
   nodes: List[int] = []
@@ -8,7 +8,7 @@ class Individual:
   def __init__(self, numberOfNodes = None):
     if numberOfNodes is not None:
       self.nodes: List[int] = list(range(numberOfNodes))
-      shuffle(self.nodes)
+      rndShuffle(self.nodes)
 
   def calcFitness(self, distanceArray):
     if self.fitness == -1:

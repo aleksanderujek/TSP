@@ -4,10 +4,10 @@ from typing import List
 from selections.tournament import tournament
 from crossovers.ox import ox
 from mutations.psm import psm
-import random as rnd
+from utilities.rnd import rndChance
 
 def percentageChance(ratio):
-    return True if ratio>rnd.random() else False
+    return True if ratio>rndChance() else False
 
 def cycle(population: Population, nodes: List[List[int]], tournamentPlayersNumber:int = 3, crossoverRatio = 0.95, mutationRatio = 0.05):
     newPop = []
@@ -19,10 +19,10 @@ def cycle(population: Population, nodes: List[List[int]], tournamentPlayersNumbe
         secondParent = tournament(nodes, population, tournamentPlayersNumber)
         child1: Individual = ox(firstParent, secondParent) if percentageChance(crossoverRatio) else firstParent
         child2: Individual = ox(secondParent, firstParent) if percentageChance(crossoverRatio) else secondParent
-        if percentageChance(mutationRatio):
-            child1 = psm(child1)
-        if percentageChance(mutationRatio):
-            child2 = psm(child2)
+        # print(child1.calcFitness(nodes))
+        # print(child2.calcFitness(nodes))
+        child1 = psm(child1, mutationRatio)
+        child2 = psm(child2, mutationRatio)
         newPop.extend([child1, child2])
     population.individuals = newPop
     return population
