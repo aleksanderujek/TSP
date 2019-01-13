@@ -48,7 +48,7 @@ End = timer()
 print('Najlepszy: ', bestFitness)
 myList = '-'.join(map(str, best.nodes))
 now = datetime.datetime.now()
-fileName = 'src/' + config['File']['ResultFileName'] + '-' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second) + '.txt'
+fileName = 'src/' + config['File']['ResultFileName'] + '-' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second) + ':' + str(now.microsecond) + '.txt'
 f= open(fileName,"w+")
 f.write(myList + ' ' + str(bestFitness))
 f.close()
