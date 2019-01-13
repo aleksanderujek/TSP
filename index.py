@@ -7,6 +7,7 @@ from utilities.cycle import cycle
 from timeit import default_timer as timer
 import configparser
 import os
+import datetime
 
 
 config = configparser.ConfigParser()
@@ -46,7 +47,9 @@ while i < generationNumber and timer()-start < time:
 End = timer()
 print('Najlepszy: ', bestFitness)
 myList = '-'.join(map(str, best.nodes))
-f= open(config['File']['ResultFileName'],"w+")
+now = datetime.datetime.now()
+fileName = 'src/' + config['File']['ResultFileName'] + '-' + str(now.hour) + ':' + str(now.minute) + ':' + str(now.second) + '.txt'
+f= open(fileName,"w+")
 f.write(myList + ' ' + str(bestFitness))
 f.close()
 print(End - start)
