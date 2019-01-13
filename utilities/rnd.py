@@ -10,4 +10,4 @@ def rndShuffle(listToShuffle):
     return rnd.shuffle(listToShuffle)
 
 def rndChoices(listOfChoices, numberOfElements):
-    return rnd.choices(population=listOfChoices, k=numberOfElements)
+    return [rnd.choice(listOfChoices) for _ in range(numberOfElements)]

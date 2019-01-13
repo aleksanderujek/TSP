@@ -3,7 +3,7 @@ from utilities.rnd import rndChance
 from utilities.rnd import rndRange
 from typing import List
 
-def psm(individual: Individual, mutationChance):
+def psm(individual, mutationChance):
     lengthOfNodes = len(individual.nodes)-1
     for index in range(lengthOfNodes):
         if (rndChance() < mutationChance):

@@ -3,7 +3,7 @@ from typing import List
 from populations.individual import Individual
 
 class Population:
-  individuals: List[Individual] = []
+  individuals = []
   best = None
 
   def __init__(self, popSize = None, factory = None):

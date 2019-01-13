@@ -10,7 +10,7 @@ def pmx(firstParent, secondParent):
     for i in range(firstIndex, secondIndex):
         child.nodes[i] = firstParent.nodes[i]
         tempChild.append(firstParent.nodes[i])
-    
+        
     
     return child
     
