@@ -45,8 +45,9 @@ while i < generationNumber and timer()-start < time:
     i+= 1
 End = timer()
 print('Najlepszy: ', bestFitness)
-print('Trasa:')
-print(best.nodes, sep='-')
-
+myList = '-'.join(map(str, best.nodes))
+f= open(config['File']['ResultFileName'],"w+")
+f.write(myList + ' ' + str(bestFitness))
+f.close()
 print(End - start)
 print('Ostateczna liczba generacji: ', i)
