@@ -31,7 +31,7 @@ currentTime = 0
 i = 0
 best = Individual(None)
 bestFitness = 10000000
-while i < generationNumber and timer()-start < time:
+while i < generationNumber or timer()-start < time:
     # print('GENERACJA : ', i)
     Pop = cycle(Pop, nodes, tournamentPlayersNumber, crossoverRatio, mutationRatio, i)
     currentBest = Pop.getBest(nodes)
