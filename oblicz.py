@@ -3,59 +3,57 @@
 import sys
 import string
 from math import sqrt
- # Wywołania: " python zmieniacz.py nazwa_pliku_we" (np.: "python zmieniacz.py berlin52.txt wyniki.txt")
-def zbudujMacierz(wiersze):
-    macierz = [[0 for col in range(int(wiersze[0]))] for row in range(int(wiersze[0]))]
+
+def createMatrix(rows):
+    matrix = [[0 for col in range(int(rows[0]))] for row in range(int(rows[0]))]
     i = 0
-    for w in wiersze[1:]:
+    for w in rows[1:]:
         w = string.strip(w).split(' ')
         j = 0
         for odl in w:
-            macierz[i][j] = int(odl)
-            macierz[j][i] = int(odl)
+            matrix[i][j] = int(odl)
+            matrix[j][i] = int(odl)
             j+=1
         i+=1
 
-    return macierz
+    return matrix
 
-def obliczOdleglosc(trasa, macierz):
-    odleglosc = 0
-    trasa = string.strip(trasa).split('-')
+def calculateDistance(route, matrix):
+    distance = 0
+    route = string.strip(route).split('-')
     try:
-        trasa = list(map(int, trasa))
+        route = list(map(int, route))
     except ValueError:
         pass
-    for i in range(len(trasa)-1):
-        odleglosc+=macierz[trasa[i]][trasa[i+1]]
-    odleglosc+=macierz[trasa[len(trasa)-1]][trasa[0]]
-    return odleglosc
+    for i in range(len(route)-1):
+        distance+=matrix[route[i]][route[i+1]]
+    distance+=matrix[route[len(route)-1]][route[0]]
+    return distance
 
-nPliku = sys.argv[1]
-nPlikuWynikow = sys.argv[2]
+fileName = sys.argv[1]
+resultsFileName = sys.argv[2]
 
-plikWe = open(nPliku, 'r') # Otwarcie pliku wejściowego
-plikWe2 = open(nPlikuWynikow, 'r') # Otwarcie pliku wejściowego wyników
+inputFile = open(fileName, 'r') 
+inputFile2 = open(resultsFileName, 'r') 
 
-plikWy = open('spr_'+nPliku.split('.')[0]+'.txt', 'w') # Stworzenie nowego pliku (wyjściowego) o tej samej nazwie, co wejściowy, ale z rozszerzeniem .txt
+plikWy = open('spr_'+fileName.split('.')[0]+'.txt', 'w') 
 
-wiersze = plikWe.readlines() # linie pliku do listy
-plikWe.close()
+rows = inputFile.readlines() 
+inputFile.close()
 
-macierz = zbudujMacierz(wiersze)
+matrix = createMatrix(rows)
 
-wyniki = plikWe2.readlines() # linie pliku do listy
-plikWe2.close()
+output = inputFile2.readlines() 
+inputFile2.close()
 
-for w in wyniki:
-    odleglosc = 0
-    w = string.strip(w).split(' ') # Podział linii według spacji, a przed tym wycięcie zbędnych białych znaków
+for w in output:
+    distance = 0
+    w = string.strip(w).split(' ') 
     if len(w)==2:
-        odleglosc = obliczOdleglosc(w[0], macierz)
-        wynik = "%i %i %s" % (odleglosc, int(w[1]), odleglosc==int(w[1]))
+        distance = calculateDistance(w[0], matrix)
+        result = "%i %i %s" % (distance, int(w[1]), distance==int(w[1]))
     else:
-        wynik = "Pominięto: %s" % w
-    print wynik
-    plikWy.write(wynik+'\n') # Zapisanie do pliku
-       
+        result = "Pominięto: %s" % w
+    print result
+    plikWy.write(result+'\n')
 plikWy.close()
-
