@@ -4,7 +4,6 @@ from typing import List
 from selections.tournament import tournament
 from selections.roulette import roulette
 from crossovers.ox import ox
-from mutations.psm import psm
 from mutations.rsm import rsm
 from utilities.rnd import rndChance
 
@@ -15,16 +14,10 @@ def cycle(population: Population, nodes: List[List[int]], tournamentPlayersNumbe
     newPop = []
     populationNumber = len(population.individuals)
     for _ in range(int(populationNumber/2)):
-        # if (generationIndex < 50000):
         firstParent = tournament(nodes, population, tournamentPlayersNumber)
         secondParent = tournament(nodes, population, tournamentPlayersNumber)
-        # else:
-        #     firstParent = roulette(nodes, population)
-        #     secondParent = roulette(nodes, population)
         child1 = ox(firstParent, secondParent) if percentageChance(crossoverRatio) else firstParent
         child2 = ox(secondParent, firstParent) if percentageChance(crossoverRatio) else secondParent
-        # print(child1.calcFitness(nodes))
-        # print(child2.calcFitness(nodes))
         child1 = rsm(child1, mutationRatio)
         child2 = rsm(child2, mutationRatio)
         newPop.extend([child1, child2])
