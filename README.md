@@ -34,6 +34,7 @@ pypy3 index.py
 
 ## Results ⏳
 
+#TODO
 
 ## Output format
 After executing the program with proper config file, program will save the best route (based on fitness) to file, named with format from config file. To make the files completely unique program add `timestamp` to the name of the file. 
